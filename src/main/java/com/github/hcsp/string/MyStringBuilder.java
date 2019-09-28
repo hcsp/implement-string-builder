@@ -15,11 +15,7 @@ public final class MyStringBuilder {
     // 请思考一下字节和字符串（字符串本质上是字节数组）之间d关系
     // 并查找相关API
     public MyStringBuilder append(byte[] bytes, String charsetName) throws UnsupportedEncodingException {
-        char[] chars = new String(bytes, charsetName).toCharArray();
-        for (char c : chars
-        ) {
-            stringBuilder.append(c);
-        }
+        stringBuilder.append(new String(bytes, charsetName));
         return this;
     }
 
@@ -35,11 +31,9 @@ public final class MyStringBuilder {
         return this;
     }
 
-
     public String toString() {
         return stringBuilder.toString();
     }
-
 }
 
 
