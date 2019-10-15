@@ -15,6 +15,12 @@ public class MyStringBuilder {
         return this;
     }
 
+    private static class TranscodingException extends RuntimeException{
+        public TranscodingException(String msg, Throwable cause) {
+            super(msg,cause);
+        }
+    }
+
     // 在末尾添加一个字符串，其数据需要从bytes字节数组中按照charsetName字符集解码得到
     // 请思考一下字节和字符串（字符串本质上是字节数组）之间d关系
     // 并查找相关API
@@ -23,6 +29,7 @@ public class MyStringBuilder {
             stringBuilder.append(new String(bytes, 0, bytes.length, charsetName));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
+            throw new TranscodingException("输入的编码为：" + charsetName + "的操作发生了异常",e);
         }
         return this;
     }
