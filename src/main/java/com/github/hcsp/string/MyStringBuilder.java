@@ -15,9 +15,9 @@ public class MyStringBuilder {
         return this;
     }
 
-    private static class TranscodingException extends RuntimeException{
+    private static class TranscodingException extends RuntimeException {
         public TranscodingException(String msg, Throwable cause) {
-            super(msg,cause);
+            super(msg, cause);
         }
     }
 
@@ -29,7 +29,7 @@ public class MyStringBuilder {
             stringBuilder.append(new String(bytes, 0, bytes.length, charsetName));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
-            throw new TranscodingException("输入的编码为：" + charsetName + "的操作发生了异常",e);
+            throw new TranscodingException("输入的编码为：" + charsetName + "的操作发生了异常", e);
         }
         return this;
     }
