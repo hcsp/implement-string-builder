@@ -16,7 +16,7 @@ public class MyStringBuilder {
     }
 
     private static class TranscodingException extends RuntimeException {
-        public TranscodingException(String msg, Throwable cause) {
+        TranscodingException(String msg, Throwable cause) {
             super(msg, cause);
         }
     }
