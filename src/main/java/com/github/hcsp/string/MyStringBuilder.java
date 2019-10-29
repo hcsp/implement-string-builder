@@ -17,13 +17,13 @@ public class MyStringBuilder {
         // 并查找相关API
         public MyStringBuilder append ( byte[] bytes, String charsetName) throws UnsupportedEncodingException {
 
-        stringBuilder.append(new String(bytes,charsetName) );
+        stringBuilder.append(new String(bytes, charsetName) );
         return this;
         }
 
         // 在index指定位置添加一个字符ch
         public MyStringBuilder insert ( int index, char ch){
-            stringBuilder.insert(index,ch);
+            stringBuilder.insert(index, ch);
             return this;
         }
 
