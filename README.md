@@ -4,7 +4,7 @@
 
 注意，我们并不反对你借助一个真正的`StringBuild`类来实现，你可以学习一下<ruby>装饰器模式<rt>decorator pattern</rt></ruby>。
 
-在提交Pull Request之前，你应当在本地确保所有代码已经编译通过，并且通过了测试(`mvn clean test`)
+在提交Pull Request之前，你应当在本地确保所有代码已经编译通过，并且通过了测试(`mvn clean verify`)
 
 -----
 注意！我们只允许你修改以下文件，对其他文件的修改会被拒绝：
