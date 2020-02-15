@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 
 public class MyStringBuilder {
     private StringBuilder stringBuilder;
+
     public MyStringBuilder() {
         stringBuilder = new StringBuilder();
     }
