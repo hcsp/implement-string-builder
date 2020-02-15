@@ -35,7 +35,7 @@ public class MyStringBuilder {
 
     // 删除位于index处的字符
     public MyStringBuilder deleteCharAt(int index) {
-        stringBuilder.deleteCharAt(index￿);
+        stringBuilder.deleteCharAt(index);
         return this;
     }
 
