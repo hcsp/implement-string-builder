@@ -1,18 +1,17 @@
 package com.github.hcsp.string;
 
-import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
 
 public class MyStringBuilder {
-    private char[] arr;
-    private int count = 0;
+    private StringBuilder sb;
 
     public MyStringBuilder() {
-        arr = new char[10000];
+        sb = new StringBuilder();
     }
 
     // 在末尾添加一个字符
     public MyStringBuilder append(char ch) {
-        arr[count++] = ch;
+        sb.append(ch);
         return this;
     }
 
@@ -20,38 +19,24 @@ public class MyStringBuilder {
     // 请思考一下字节和字符串（字符串本质上是字节数组）之间d关系
     // 并查找相关API
     public MyStringBuilder append(byte[] bytes, String charsetName) {
-        try {
-            String str = new String(bytes, charsetName);
-            for (int i = 0; i < str.length(); i++) {
-                arr[count++] = str.charAt(i);
-            }
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+        sb.append(new String(bytes, Charset.forName(charsetName)));
         return this;
     }
 
     // 在index指定位置添加一个字符ch
     public MyStringBuilder insert(int index, char ch) {
-        for (int i = count; i > index; i--) {
-            arr[i] = arr[i - 1];
-        }
-        count++;
-        arr[index] = ch;
+        sb.insert(index, ch);
         return this;
     }
 
     // 删除位于index处的字符
     public MyStringBuilder deleteCharAt(int index) {
-        for (int i = index; i < count; i++) {
-            arr[i] = arr[i + 1];
-        }
-        count--;
+        sb.deleteCharAt(index);
         return this;
     }
 
     @Override
     public String toString() {
-        return new String(arr, 0, count);
+        return sb.toString();
     }
 }
