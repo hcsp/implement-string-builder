@@ -1,5 +1,6 @@
 package com.github.hcsp.string;
 
+
 import java.io.UnsupportedEncodingException;
 
 public class MyStringBuilder {
@@ -23,9 +24,10 @@ public class MyStringBuilder {
         return this;
     }
 
+
     // 在index指定位置添加一个字符ch
     public MyStringBuilder insert(int index, char ch) {
-        stringBuilder.insert(index,ch);
+        stringBuilder.insert(index, ch);
         return this;
     }
 
@@ -40,3 +42,4 @@ public class MyStringBuilder {
         return String.valueOf(stringBuilder);
     }
 }
+
