@@ -1,6 +1,5 @@
 package com.github.hcsp.string;
 
-
 import java.io.UnsupportedEncodingException;
 
 public class MyStringBuilder {
