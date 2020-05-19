@@ -9,6 +9,7 @@ public class MyStringBuilder {
         this.stringBuilder = new StringBuilder();
     }
 
+
     // 在末尾添加一个字符
     public MyStringBuilder append(char ch) {
         stringBuilder.append(ch);
