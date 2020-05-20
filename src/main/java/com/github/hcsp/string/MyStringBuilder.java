@@ -1,8 +1,6 @@
 package com.github.hcsp.string;
 
 import java.io.UnsupportedEncodingException;
-import java.nio.charset.CharsetDecoder;
-import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
 public class MyStringBuilder {
@@ -67,8 +65,9 @@ public class MyStringBuilder {
 
     // 在末尾添加字符串
     public MyStringBuilder append(String str) {
-        if (str == null)
+        if (str == null) {
             return this;
+        }
         int len = str.length();
         ensureCapacityInternal(count + len);
         str.getChars(0, len, value, count);
@@ -76,18 +75,57 @@ public class MyStringBuilder {
         return this;
     }
 
-    // 在index指定位置添加一个字符ch
-    public MyStringBuilder insert(int index, char ch) {}
+    // 在index指定位置添加一个字符ch(index及之后整体往后挪一位)
+    public MyStringBuilder insert(int index, char ch) {
+        ensureCapacityInternal(count + 1);
+        System.arraycopy(value, index, value, index + 1, count - index);
+        value[index] = ch;
+        count += 1;
+        return this;
+    }
 
-    // 删除位于index处的字符
-    public MyStringBuilder deleteCharAt(int index) {}
+    // 删除位于index处的字符(index之后整体往前挪一位)
+    public MyStringBuilder deleteCharAt(int index) {
+        if ((index < 0) || (index >= count)) {
+            throw new StringIndexOutOfBoundsException(index);
+        }
+        System.arraycopy(value, index + 1, value, index, count - index - 1);
+        count--;
+        return this;
+    }
+
+    public int length() {
+        return count;
+    }
 
     @Override
     public String toString() {
-        return null;
+        return new String(value, 0, count);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws UnsupportedEncodingException {
+
+        MyStringBuilder sb = new MyStringBuilder();
+
+        for (int i = 0; i < 10; i++) {
+            sb.append('a');
+        }
+
+        System.out.println(sb.length());
+
+        String str = sb.toString();
+        System.out.println(str);
+        System.out.println(str.length());
+
+
+        sb.append("今天天气不错".getBytes("GBK"), "GBK");
+        System.out.println(sb.toString());
+
+        sb.insert(2, '哈');
+        System.out.println(sb.toString());
+
+        sb.deleteCharAt(2);
+        System.out.println(sb.toString());
 
     }
 }
