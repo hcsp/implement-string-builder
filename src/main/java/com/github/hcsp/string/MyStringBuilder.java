@@ -6,6 +6,10 @@ public class MyStringBuilder {
 
     private StringBuilder stringBuilder;
 
+    public MyStringBuilder() {
+        stringBuilder = new StringBuilder();
+    }
+
 
     // 在末尾添加一个字符
     public MyStringBuilder append(char ch) {
@@ -18,8 +22,8 @@ public class MyStringBuilder {
     // 并查找相关API
     public MyStringBuilder append(byte[] bytes, String charsetName)
         throws UnsupportedEncodingException {
-        String string = new String(bytes, charsetName);
-        stringBuilder.append(string);
+
+        stringBuilder.append(new String(bytes, charsetName));
         return this;
     }
 
