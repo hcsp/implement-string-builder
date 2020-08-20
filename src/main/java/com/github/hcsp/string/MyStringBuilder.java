@@ -25,7 +25,7 @@ public class MyStringBuilder {
     }
 
     private char[] ensureCapacity(int capacity) {
-        return capacity - chars.length > 0 ? Arrays.copyOf(chars, (chars.length<<1)) : null;
+        return capacity - chars.length > 0 ? Arrays.copyOf(chars, (chars.length << 1)) : null;
     }
 
     // 在末尾添加一个字符串，其数据需要从bytes字节数组中按照charsetName字符集解码得到
@@ -37,7 +37,7 @@ public class MyStringBuilder {
         System.arraycopy(chars, 0, newChars, 0, count);
         System.arraycopy(s.toCharArray(), 0, newChars, count, s.length());
         chars = newChars;
-        count+=s.length();
+        count += s.length();
         return this;
     }
 
