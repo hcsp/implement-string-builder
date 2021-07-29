@@ -1,28 +1,17 @@
 package com.github.hcsp.string;
 
 import java.io.UnsupportedEncodingException;
-import java.util.Arrays;
 
 public class MyStringBuilder {
-    private char[] value;
-    private int count;
+    private final StringBuilder stringBuilder;
 
     public MyStringBuilder() {
-        this.value = new char[16];
-        this.count = 0;
-    }
-
-    private void ensureCapacityInternal(int minimumCapacity) {
-        if (minimumCapacity - value.length > 0) {
-            int newCapacity = (value.length << 1) + 2;
-            value = Arrays.copyOf(value, newCapacity);
-        }
+        stringBuilder = new StringBuilder();
     }
 
     // 在末尾添加一个字符
     public MyStringBuilder append(char ch) {
-        ensureCapacityInternal(count + 1);
-        value[count++] = ch;
+        stringBuilder.append(ch);
         return this;
     }
 
@@ -31,35 +20,27 @@ public class MyStringBuilder {
     // 并查找相关API
     public MyStringBuilder append(byte[] bytes, String charsetName) {
         try {
-            String string = new String(bytes, charsetName);
-            char[] chars = string.toCharArray();
-            ensureCapacityInternal(count + chars.length);
-            System.arraycopy(chars, 0, value, count, chars.length);
-            count += chars.length;
+            stringBuilder.append(new String(bytes, charsetName));
+            return this;
         } catch (UnsupportedEncodingException e) {
             throw new RuntimeException(e);
         }
-        return this;
     }
 
     // 在index指定位置添加一个字符ch
     public MyStringBuilder insert(int index, char ch) {
-        ensureCapacityInternal(count);
-        System.arraycopy(value, index, value, index + 1, count - index);
-        value[index] = ch;
-        count++;
+        stringBuilder.insert(index, ch);
         return this;
     }
 
     // 删除位于index处的字符
     public MyStringBuilder deleteCharAt(int index) {
-        System.arraycopy(value, index + 1, value, index, count - index);
-        count--;
+        stringBuilder.deleteCharAt(index);
         return this;
     }
 
     @Override
     public String toString() {
-        return new String(value, 0, count);
+        return stringBuilder.toString();
     }
 }
