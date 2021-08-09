@@ -29,7 +29,7 @@ public class MyStringBuilder {
     }
 
     // 在index指定位置添加一个字符ch
-    public MyStringBuilder insert(int index, char chgit ) {
+    public MyStringBuilder insert(int index, char ch) {
         this.value.insert(index, ch);
         return this;
     }
